@@ -1,0 +1,10 @@
+{
+  "name": "employee-contact",
+  "description": "An employee contact manager app using Express 4 with MongoDB, and ReactJS in Flux, using Webpack as a module bundler",
+  "repository": "https://github.com/crosshj/employee-contact",
+  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "express", "static", "react", "webpack", "mongodb"],
+  "addons" : [
+  	"mongohq"
+  ]
+}
