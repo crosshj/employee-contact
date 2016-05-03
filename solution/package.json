@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/crosshj/employee-contact/issues"
   },
-  "homepage": "https://github.com/crosshj/employee-contact#readme"
+  "homepage": "https://github.com/crosshj/employee-contact#readme",
+  "dependencies": {
+    "hapi": "^13.3.0"
+  }
 }

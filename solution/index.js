@@ -1,14 +1,14 @@
-var http = require('http');
+var Hapi = require('hapi');
+var server = new Hapi.Server(PORT, '0.0.0.0');
 
-const PORT=8080;
+server.route({
+    method: 'GET',
+    path: '/{yourname*}',
+    handler: function(req, reply) {
+        reply('Hello ' + req.params.yourname + '!')
+    }
+});
 
-function handleRequest(request, response){
-    response.end('It Works!! Path Hit: ' + request.url);
-}
-
-var server = http.createServer(handleRequest);
-
-server.listen(PORT, '0.0.0.0', null, function(){
-    //Callback triggered when server is successfully listening. Hurray!
-    console.log("Server listening on: http://localhost:%s", PORT);
+server.start(function(){ // boots your server
+    console.log('SERVER AT: ' + server.info.uri + '/YOURNAME')
 });
