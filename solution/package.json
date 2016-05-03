@@ -1,0 +1,21 @@
+{
+  "name": "employee-contact",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A simple solution to manage employee contact info across employers implemented using docker, mongo, and react.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crosshj/employee-contact.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crosshj/employee-contact/issues"
+  },
+  "homepage": "https://github.com/crosshj/employee-contact#readme"
+}
