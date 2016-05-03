@@ -7,9 +7,3 @@ A simple solution to manage employee contact info across employers implemented u
 
 - Support an interface that allows for creating, reading, updating, and deleting an employee.
 
-###Notes:
-
-- bootstrapped using https://github.com/iiegor/generator-react-webpack-node
-
-- based on https://github.com/choonkending/react-webpack-node
-
