@@ -7,10 +7,6 @@ export default class ContactsMain extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
 
-  _onChange() {
-    //this.setState(TodoStore.getList());
-  }
-
   render() {
     return (
       <div className="container">
