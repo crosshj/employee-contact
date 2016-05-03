@@ -29,7 +29,7 @@ server.register(require('inert'), (err) => {
 });
 
 server.start(() => {
-    console.log('SERVER AT: ' + server.info.uri);
+    return console.log('SERVER AT: ' + server.info.uri);
 });
 
 module.exports = server;

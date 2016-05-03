@@ -1,8 +1,8 @@
-import ContactsMain from './components/ContactsMain.jsx';
+import MainContainer from './components/MainContainer.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 ReactDOM.render(
-  <ContactsMain />,
+  <MainContainer />,
   document.getElementById('app')
 );
