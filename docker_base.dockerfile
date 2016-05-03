@@ -1,13 +1,17 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04
+
+# some issues installing per mongo website
+# used http://serverfault.com/questions/746348/mongodb-install-fails-in-ubuntu-14-04-docker-container
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 &&\
+    echo "deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 
 RUN apt-get update
 RUN apt-get install -y git nano wget openssh-client git-core python
-RUN apt-get install -y make build-essential g++
+RUN apt-get install -y make build-essential g++ libkrb5-dev
 
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
-ENV NVM_DIR=/root/.nvm
-ENV SHIPPABLE_NODE_VERSION=v5.10.1
-RUN . $HOME/.nvm/nvm.sh &&\
-    nvm install $SHIPPABLE_NODE_VERSION &&\
-    nvm alias default $SHIPPABLE_NODE_VERSION &&\
-    nvm use default
+RUN wget -qO- https://deb.nodesource.com/setup_5.x | bash &&\
+    apt-get install -y nodejs
+
+RUN apt-get install -y mongodb-org-shell
+
+
