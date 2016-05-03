@@ -1,5 +1,6 @@
 var express = require('express');
 var fs = require('fs');
+var secrets = require('./config/secrets');
 var webpack = require('webpack');
 var app = express();
 
