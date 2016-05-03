@@ -1,5 +1,5 @@
 var Hapi = require('hapi');
-const PORT = 8080;
+var PORT = 8080;
 var server = new Hapi.Server(PORT, '0.0.0.0');
 
 server.route({
