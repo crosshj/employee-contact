@@ -29,4 +29,4 @@ require('./config/express')(app);
 // Bootstrap routes
 require('./config/routes')(app);
 
-app.listen(app.get('port'));
+app.listen(app.get('port'), "0.0.0.0");
