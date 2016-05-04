@@ -1,21 +1,26 @@
 import React, {PropTypes} from 'react';
 
 const propTypes = {
-  type: PropTypes.string,
-  label: PropTypes.string
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string
 };
 
-function Field() {
+const defaultProps = {
+  type: 'text',
+};
+
+function Field(props) {
   return (
     <div className="field">
       <input
-        type={this.props.type || 'text'}
-        placeholder={this.props.label}
+        type={props.type}
+        placeholder={props.label}
       />
     </div>
   );
 }
 
 Field.propTypes = propTypes;
+Field.defaultProps = defaultProps;
 
 export default Field;

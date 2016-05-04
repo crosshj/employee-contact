@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react';
 
 const propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string.isRequired
 };
 
-function Button() {
+function Button(props) {
   return (
     <div className="button">
       <button type="button">
-        {this.props.text}
+        {props.text}
       </button>
     </div>
   );
