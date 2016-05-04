@@ -1,7 +1,7 @@
 import React from 'react';
 
 function BottomMenu(props) {
-  if (!props.visible){
+  if (!props.visible) {
     return null;
   }
 
