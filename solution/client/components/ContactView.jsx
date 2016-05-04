@@ -1,11 +1,15 @@
 import React from 'react';
 import Field from './shared/Field.jsx';
 
-function ContactView() {
+function ContactView(props) {
+  if (!props.visible){
+    return null;
+  }
+
   return (
     <div className="edit-contact">
       <Field label="UserType" type="hidden" />
-      <Field label="UserName" />
+      <Field label="User Name" />
       <Field label="Password" type="password" />
       <Field label="Name" />
       <Field label="Email" type="email" />

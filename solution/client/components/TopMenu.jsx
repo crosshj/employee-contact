@@ -1,6 +1,10 @@
 import React from 'react';
 
-function TopMenu() {
+function TopMenu(props) {
+  if (!props.visible){
+    return null;
+  }
+
   return (
     <div className="top-menu">
       <ul>

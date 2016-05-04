@@ -1,6 +1,10 @@
 import React from 'react';
 
-function BottomMenu() {
+function BottomMenu(props) {
+  if (!props.visible){
+    return null;
+  }
+
   return (
     <div className="bottom-menu">
       <ul>
