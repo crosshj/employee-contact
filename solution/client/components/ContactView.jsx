@@ -15,6 +15,7 @@ function ContactView(props) {
       <Field label="Email" type="email" />
       <Field label="Phone" type="tel" />
       <Field label="Address" />
+      <Field label="City" />
       <Field label="State / Province" />
       <Field label="Zip" />
     </div>
