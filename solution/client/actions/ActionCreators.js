@@ -2,33 +2,33 @@ import Dispatcher from '../Dispatcher';
 import { ActionTypes } from '../constants';
 
 const ActionCreators = {
-  EmployerSignIn() {
+  employerSignIn() {
       Dispatcher.dispatch({
         type: ActionTypes.UI_EMPLOYER_SIGN_IN
       });
     },
 
-  EmployerRegister() {
+  employerRegister() {
       Dispatcher.dispatch({
         type: ActionTypes.UI_EMPLOYER_REGISTER
       });
     },
 
-  EmployerPasswordChange(password) {
+  employerPasswordChange(password) {
       Dispatcher.dispatch({
         type: ActionTypes.UI_EMPLOYER_PASSWORD_CHANGE,
         payload: password
       });
     },
 
-  EmployerUserNameChange(userName) {
+  employerUserNameChange(userName) {
       Dispatcher.dispatch({
         type: ActionTypes.UI_EMPLOYER_USER_NAME_CHANGE,
         payload: userName
       });
     },
 
-  ContactSave() {
+  contactSave() {
       Dispatcher.dispatch({
         type: ActionTypes.UI_CONTACT_SAVE
       });

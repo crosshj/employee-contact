@@ -15,19 +15,19 @@ const defaultProps = {
 
 class LoginView extends React.Component {
   signIn() {
-    actionCreators.EmployerSignIn();
+    actionCreators.employerSignIn();
   }
 
   register() {
-    actionCreators.EmployerRegister();
+    actionCreators.employerRegister();
   }
 
   passwordChange(event) {
-    actionCreators.EmployerPasswordChange(event.target.value);
+    actionCreators.employerPasswordChange(event.target.value);
   }
 
   userNameChange(event) {
-    actionCreators.EmployerUserNameChange(event.target.value);
+    actionCreators.employerUserNameChange(event.target.value);
   }
 
   render() {
