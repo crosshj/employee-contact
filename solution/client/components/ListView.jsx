@@ -1,16 +1,11 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 
-export default class LoginView extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="list">
-        List
-      </div>
-    );
-  }
+function ListView() {
+  return (
+    <div className="list">
+      List
+    </div>
+  );
 }
+
+export default ListView;

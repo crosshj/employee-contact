@@ -1,19 +1,21 @@
 import React, {PropTypes} from 'react';
 
-export default class Field extends React.Component {
+const propTypes = {
+  type: PropTypes.string,
+  label: PropTypes.string
+};
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="field">
-          <input
-            type={this.props.type || 'text'}
-            placeholder={this.props.label}
-          />
-      </div>
-    );
-  }
+function Field() {
+  return (
+    <div className="field">
+      <input
+        type={this.props.type || 'text'}
+        placeholder={this.props.label}
+      />
+    </div>
+  );
 }
+
+Field.propTypes = propTypes;
+
+export default Field;
