@@ -2,7 +2,7 @@ import React from 'react';
 import Field from './shared/Field.jsx';
 
 function ContactView(props) {
-  if (!props.visible){
+  if (!props.visible) {
     return null;
   }
 

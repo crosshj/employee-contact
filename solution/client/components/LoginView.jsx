@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import Button from './shared/Button.jsx';
 import Field from './shared/Field.jsx';
-import ActionCreators from '../actions/ActionCreators';
+import actionCreators from '../actions/ActionCreators';
 
 const propTypes = {
   name: PropTypes.string,
@@ -15,23 +15,23 @@ const defaultProps = {
 
 class LoginView extends React.Component {
   signIn() {
-    ActionCreators.EmployerSignIn();
+    actionCreators.EmployerSignIn();
   }
 
   register() {
-    ActionCreators.EmployerRegister();
+    actionCreators.EmployerRegister();
   }
 
   passwordChange(event) {
-    ActionCreators.EmployerPasswordChange(event.target.value);
+    actionCreators.EmployerPasswordChange(event.target.value);
   }
 
   userNameChange(event) {
-    ActionCreators.EmployerUserNameChange(event.target.value);
+    actionCreators.EmployerUserNameChange(event.target.value);
   }
 
   render() {
-    if (!this.props.visible){
+    if (!this.props.visible) {
       return null;
     }
 

@@ -11,15 +11,15 @@ import AppStore from '../stores/AppStore';
 
 class MainContainer extends React.Component {
   static getStores() {
-    return [ AppStore ];
+    return [AppStore];
   }
 
   static calculateState() {
     const appState = AppStore.get();
 
-    appState.showContact=false;
-    appState.showLogin=true;
-    appState.showList=false;
+    appState.showContact = false;
+    appState.showLogin = true;
+    appState.showList = false;
 
     return appState;
   }

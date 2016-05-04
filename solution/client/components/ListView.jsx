@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ListView(props) {
-  if (!props.visible){
+  if (!props.visible) {
     return null;
   }
 
