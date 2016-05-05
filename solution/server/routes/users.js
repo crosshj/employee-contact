@@ -2,6 +2,49 @@ import Boom from 'boom';
 import Joi from 'joi';
 import { UserModel } from '../models/user';
 
+function listUsersCreatedById(id, callback) {
+  UserModel.find(
+    {createdBy: id},
+    (err, contacts) => {
+      if (!err) {
+        callback(contacts);
+      } else {
+        callback(Boom.badImplementation(err));
+      }
+    }
+  );
+}
+
+function signIn(server) {
+  const handler = (request, reply) => {
+    UserModel.find(
+      {
+        userName: request.payload.userName,
+        password: request.payload.password
+      },
+      (err, foundUsers) => {
+        if (foundUsers.length > 0) {
+          listUsersCreatedById(
+            foundUsers[0].id,
+            reply
+          );
+        } else if (err) {
+          reply(Boom.forbidden(err));
+        } else {
+          const signInMsg = 'Could not sign in with that username and password.';
+          reply(Boom.forbidden(signInMsg));
+        }
+      }
+    );
+  };
+
+  server.route({
+    method: 'POST',
+    path: '/signIn',
+    handler
+  });
+}
+
 function creator(server) {
   let user;
   const handler = (request, reply) => {
@@ -36,15 +79,10 @@ function creator(server) {
 
 function reader(server) {
   const handler = (request, reply) => {
-    UserModel.find(
-      {createdBy: request.params.employerId},
-      (err, contacts) => {
-      if (!err) {
-        reply(contacts);
-      } else {
-        reply(Boom.badImplementation(err));
-      }
-    });
+    listUsersCreatedById(
+      request.params.employerId,
+      reply
+    );
   };
 
   server.route({
@@ -128,6 +166,7 @@ function deleter(server) {
 }
 
 const usersRoute = (server) => {
+  signIn(server);
   creator(server);
   reader(server);
   updater(server);

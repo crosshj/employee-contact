@@ -7,7 +7,7 @@ import LoginView from './LoginView.jsx';
 import TopMenu from './TopMenu.jsx';
 import BottomMenu from './BottomMenu.jsx';
 
-import AppStore from '../stores/AppStore';
+import { AppStore } from '../stores';
 
 class MainContainer extends React.Component {
   static getStores() {
