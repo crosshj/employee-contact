@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+# consider using https://hub.docker.com/_/node/ instead
+
 # some issues installing per mongo website
 # used http://serverfault.com/questions/746348/mongodb-install-fails-in-ubuntu-14-04-docker-container
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 &&\
