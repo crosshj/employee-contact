@@ -36,7 +36,7 @@ class LoginView extends React.Component {
     }
 
     return (
-      <div className="login-view">
+      <div className="loginView">
         <Field
           label="User Name"
           value={this.props.userName}

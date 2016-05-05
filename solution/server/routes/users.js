@@ -2,12 +2,12 @@ import Boom from 'boom';
 import Joi from 'joi';
 import { UserModel } from '../models/user';
 
-function listUsersCreatedById(id, callback) {
+function listUsersCreatedById(id, reply) {
   UserModel.find(
     {createdBy: id},
     (err, contacts) => {
       if (!err) {
-        callback(contacts);
+        reply(contacts).state('employerId', id, { encoding: 'none' });
       } else {
         callback(Boom.badImplementation(err));
       }
@@ -106,8 +106,8 @@ function updater(server) {
       request.payload,
       { multi: true },
       (err, numAffected) => {
-        if (!numAffected.nModified) {
-          const updateMsg = 'Could not update any user.';
+        if (!numAffected.n) {
+          const updateMsg = 'Did not update any user.';
           reply(Boom.forbidden(updateMsg));
         } else if (err) {
           reply(Boom.forbidden(err));

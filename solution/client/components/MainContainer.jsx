@@ -4,8 +4,7 @@ import { Container } from 'flux/utils';
 import ContactView from './ContactView.jsx';
 import ListView from './ListView.jsx';
 import LoginView from './LoginView.jsx';
-import TopMenu from './TopMenu.jsx';
-import BottomMenu from './BottomMenu.jsx';
+import Menu from './Menu.jsx';
 
 import { AppStore } from '../stores';
 
@@ -16,10 +15,10 @@ class MainContainer extends React.Component {
 
   static calculateState() {
     const appState = AppStore.get();
-
-    appState.showContact = false;
-    appState.showLogin = true;
-    appState.showList = false;
+    appState.showContact = !!appState.selected;
+    appState.showLogin = appState.employer.status !== 'signedIn';
+    appState.showList = appState.employer.status === 'signedIn'
+      && !appState.showContact;
 
     return appState;
   }
@@ -27,10 +26,18 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div className="container">
-        <TopMenu
-          visible={!this.state.showLogin}
+        <Menu
+          view={ this.state.showContact
+                  ? "contact" 
+                  : this.state.showList 
+                    ? "list"
+                    : "login"
+                }
+          dirty={this.state.selected && this.state.selected.status === 'dirty'}
+          visible={true}
         />
         <ContactView
+          contact={this.state.selected}
           visible={this.state.showContact}
         />
         <LoginView
@@ -39,10 +46,8 @@ class MainContainer extends React.Component {
           visible={this.state.showLogin}
         />
         <ListView
+          contacts={this.state.contacts}
           visible={this.state.showList}
-        />
-        <BottomMenu
-          visible={!this.state.showLogin}
         />
       </div>
     );

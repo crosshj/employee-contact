@@ -12,7 +12,7 @@ const ApiWrapper = {
         if (err) {
           actionCreators.apiCreateUserError(err);
         } else {
-          actionCreators.apiCreateUserSuccess(res);
+          actionCreators.apiCreateUserSuccess(res.body);
         }
       });
   },
@@ -27,7 +27,7 @@ const ApiWrapper = {
         if (err) {
           actionCreators.apiSignInEmployerError(err);
         } else {
-          actionCreators.apiReadUsersSuccess(res);
+          actionCreators.apiReadUsersSuccess(res.body);
         }
       });
   },
@@ -40,7 +40,7 @@ const ApiWrapper = {
         if (err) {
           actionCreators.apiReadUsersError(err);
         } else {
-          actionCreators.apiReadUsersSuccess(res);
+          actionCreators.apiReadUsersSuccess(res.body);
         }
       });
   },
@@ -55,7 +55,7 @@ const ApiWrapper = {
         if (err) {
           actionCreators.apiUpdateUserError(err);
         } else {
-          actionCreators.apiUpdateUserSuccess(res);
+          actionCreators.apiUpdateUserSuccess(res.body);
         }
       });
   },
@@ -68,7 +68,7 @@ const ApiWrapper = {
         if (err) {
           actionCreators.apiDeleteUserError(err);
         } else {
-          actionCreators.apiDeleteUserSuccess(res);
+          actionCreators.apiDeleteUserSuccess(res.body);
         }
       });
   }

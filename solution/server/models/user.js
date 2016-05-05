@@ -39,6 +39,7 @@ const userSchema = new mongoose.Schema({
   },
   phone: String,
   address: String,
+  city: String,
   state: String,
   zip: String
 });
@@ -49,6 +50,7 @@ function saveMiddlewareHandler(next) {
       && !!this.userName
       && !!this.password
   ) {
+    this.createdBy = this.id;
     next();
   } else if (this.userType === 'Employer') {
     next(

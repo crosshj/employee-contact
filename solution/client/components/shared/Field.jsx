@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 
 const propTypes = {
+  fieldType: PropTypes.string,
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
   value: PropTypes.string,
@@ -8,6 +9,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  fieldType: '',
   type: 'text',
   value: ''
 };
@@ -16,6 +18,7 @@ function Field(props) {
   return (
     <div className="field">
       <input
+        data-field={props.fieldType}
         type={props.type}
         placeholder={props.label}
         value={props.value}

@@ -9,6 +9,12 @@ const ActionCreators = {
     });
   },
 
+  employerSignOut() {
+    Dispatcher.dispatch({
+      type: ActionTypes.UI_EMPLOYER_SIGN_OUT
+    });
+  },
+
   employerRegister() {
     Dispatcher.dispatch({
       type: ActionTypes.UI_EMPLOYER_REGISTER
@@ -29,9 +35,48 @@ const ActionCreators = {
     });
   },
 
+  contactAdd() {
+    Dispatcher.dispatch({
+      type: ActionTypes.UI_CONTACT_ADD
+    });
+  },
+
   contactSave() {
     Dispatcher.dispatch({
       type: ActionTypes.UI_CONTACT_SAVE
+    });
+  },
+
+  contactSelect(contactId) {
+    Dispatcher.dispatch({
+      type: ActionTypes.UI_CONTACT_SELECT,
+      payload: contactId
+    });
+  },
+
+  selectedContactCancel() {
+    Dispatcher.dispatch({
+      type: ActionTypes.UI_SELECTED_CONTACT_CANCEL
+    });
+  },
+
+  selectedContactSave() {
+    Dispatcher.dispatch({
+      type: ActionTypes.UI_SELECTED_CONTACT_SAVE
+    });
+  },
+
+  selectedContactDelete(contactId) {
+    Dispatcher.dispatch({
+      type: ActionTypes.UI_SELECTED_CONTACT_DELETE,
+      payload: contactId
+    });
+  },
+
+  selectedContactFieldChange(options) {
+    Dispatcher.dispatch({
+      type: ActionTypes.UI_SELECTED_CONTACT_FIELD_CHANGE,
+      payload: options
     });
   },
 

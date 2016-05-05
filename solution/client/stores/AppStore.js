@@ -2,20 +2,25 @@
 import { ActionTypes } from '../constants';
 import { Store } from 'flux/utils';
 import Dispatcher from '../Dispatcher';
+import _ from 'lodash';
 
 class AppStore extends Store {
   constructor(dispatcher) {
     super(dispatcher);
     this._state = {
-      employer: {}
+      employer: {},
+      contacts: [],
+      selected: undefined
     };
   }
 
   get() {
-    return this._state;
+    let state = _.cloneDeep(this._state);
+    return state;
   }
 
   __onDispatch(action) {
+    console.log(action.type);
     switch (action.type) {
       case ActionTypes.UI_EMPLOYER_USER_NAME_CHANGE: {
         this._state.employer.userName = action.payload;
@@ -35,16 +40,76 @@ class AppStore extends Store {
         break;
       }
 
+      case ActionTypes.UI_EMPLOYER_SIGN_OUT: {
+        this._state.employer= {};
+        this.__emitChange();
+        break;
+      }
+
       case ActionTypes.UI_EMPLOYER_REGISTER: {
         this._state.employer.status = 'registering';
         this.__emitChange();
         break;
       }
 
-      case ActionTypes.SERVICE_EMPLOYER_RECEIVE: {
-        this._state.employer = Object.assign({}, action.payload);
+      case ActionTypes.UI_CONTACT_SELECT: {
+        const contactId = action.payload;
+        const selectedContact = this._state
+          .contacts
+          .filter((contact) => {
+            return contact.id === contactId;
+          })[0];
+        this._state.selected = _.cloneDeep(selectedContact);
         this.__emitChange();
         break;
+      }
+
+      case ActionTypes.API_READ_USERS_SUCCESS: {
+        const employer = action.payload.filter((user) => {
+          return user.userType.toLowerCase() === 'employer';
+        })[0];
+        const contacts = action.payload.filter((user) => {
+          return user.userType.toLowerCase() === 'contact';
+        });
+        this._state.employer = _.cloneDeep(employer);
+        this._state.employer.status = 'signedIn';
+        this._state.contacts = _.cloneDeep(contacts);
+        this.__emitChange();
+        break;
+      }
+
+      case ActionTypes.UI_SELECTED_CONTACT_FIELD_CHANGE: {
+        const options = action.payload;
+        this._state.selected[options.field] = options.value;
+        this._state.selected.status = 'dirty';
+        this.__emitChange();
+        break;
+      }
+
+      case ActionTypes.UI_SELECTED_CONTACT_CANCEL: {
+        this._state.selected = undefined;
+        this.__emitChange();
+        break;
+      }
+
+      case ActionTypes.UI_SELECTED_CONTACT_SAVE: {
+        this._state.selected.status = 'saving';
+        this.__emitChange();
+        break;
+      }
+
+      case ActionTypes.API_UPDATE_USER_SUCCESS: {
+        delete this._state.selected.status;
+        let contacts = this._state
+          .contacts
+          .map((contact) => {
+            return contact.id === this._state.selected.id
+              ? this._state.selected
+              : contact;
+          });
+        this._state.contacts = _.cloneDeep(contacts);
+        this._state.selected = undefined;
+        this.__emitChange();
       }
 
       default: {
