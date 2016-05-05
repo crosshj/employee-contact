@@ -72,6 +72,7 @@ function Menu(props) {
           : null
         }
         { props.view === 'contact'
+          && !!props.showDelete
           ? <li
               className="deleteContact"
               onClick={onDeleteClick}

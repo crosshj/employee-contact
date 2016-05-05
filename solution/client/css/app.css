@@ -138,6 +138,7 @@ ul.floatMenu {
 .contactView {
   padding-top: 55px;
   text-align: center;
+  max-width: 481px; 
 }
 
 .contactView input {

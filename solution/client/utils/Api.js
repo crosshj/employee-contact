@@ -62,7 +62,7 @@ const ApiWrapper = {
 
   deleteUser(user) {
     request
-      .put('/users/' + user.id)
+      .delete('/users/' + user.id)
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) {

@@ -34,6 +34,7 @@ class MainContainer extends React.Component {
                     : "login"
                 }
           dirty={this.state.selected && this.state.selected.status === 'dirty'}
+          showDelete={!!this.state.selected && !!this.state.selected.id}
           visible={true}
         />
         <ContactView

@@ -4,21 +4,16 @@ import Dispatcher from '../Dispatcher';
 import { AppStore } from '../stores';
 import { Api } from '../utils';
 
-// TODO: would work better with first server GET and server-side rendering
-const employerIdCookieValue = document
-  .cookie
-  .replace(/(?:(?:^|.*;\s*)employerId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
-if (employerIdCookieValue) {
-  Api.readUsers({ id: employerIdCookieValue});
-}
-
 class AppService extends Store {
   constructor(dispatcher) {
     super(dispatcher);
     this.stores = {
       AppStore
     };
+    const appState = this.stores.AppStore.get();
+    if (appState.employer.id && appState.contacts.length <= 0) {
+      Api.readUsers(appState.employer);
+    }
   }
 
   getCurrentState() {
@@ -41,7 +36,21 @@ class AppService extends Store {
 
       case ActionTypes.UI_SELECTED_CONTACT_SAVE: {
         const state = this.getCurrentState();
-        Api.updateUser(state.AppStore.selected);
+        if (!state.AppStore.selected.id){
+          let selected = state.AppStore.selected;
+          selected.createdBy = state.AppStore.employer.id;
+          selected.userType = 'Contact';  
+          Api.createUser(selected);
+        } else {
+          Api.updateUser(state.AppStore.selected);
+        }
+        break;
+      }
+
+     case ActionTypes.UI_SELECTED_CONTACT_DELETE: {
+        const state = this.getCurrentState();
+        let selected = state.AppStore.selected;  
+        Api.deleteUser(selected);
         break;
       }
 

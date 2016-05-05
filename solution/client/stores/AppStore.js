@@ -4,14 +4,25 @@ import { Store } from 'flux/utils';
 import Dispatcher from '../Dispatcher';
 import _ from 'lodash';
 
+    // TODO: would work better with first server GET and server-side rendering
+const employerIdCookieValue = document
+  .cookie
+  .replace(/(?:(?:^|.*;\s*)employerId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
 class AppStore extends Store {
   constructor(dispatcher) {
     super(dispatcher);
+
     this._state = {
       employer: {},
       contacts: [],
       selected: undefined
     };
+
+    if (employerIdCookieValue) {
+      this._state.employer.id = employerIdCookieValue;
+      this._state.employer.status = 'signedIn';
+    }
   }
 
   get() {
@@ -51,7 +62,13 @@ class AppStore extends Store {
         this.__emitChange();
         break;
       }
-
+      
+      case ActionTypes.UI_CONTACT_ADD: {
+        this._state.selected = {};
+        this.__emitChange();
+        break;
+      }
+      
       case ActionTypes.UI_CONTACT_SELECT: {
         const contactId = action.payload;
         const selectedContact = this._state
@@ -98,8 +115,32 @@ class AppStore extends Store {
         break;
       }
 
+      case ActionTypes.API_CREATE_USER_SUCCESS: {
+        if (this._state.selected && this._state.selected.status) {
+          delete this._state.selected.status;
+        }
+        this._state.contacts.push(action.payload);
+        this._state.selected = undefined;
+        this.__emitChange();
+        break;
+      }
+
+      case ActionTypes.API_DELETE_USER_SUCCESS: {
+        let contacts = this._state
+          .contacts
+          .filter((contact) => {
+            return contact.id !== this._state.selected.id
+          });
+        this._state.contacts = _.cloneDeep(contacts);
+        this._state.selected = undefined;
+        this.__emitChange();
+        break;
+      }
+
       case ActionTypes.API_UPDATE_USER_SUCCESS: {
-        delete this._state.selected.status;
+        if (this._state.selected && this._state.selected.status) {
+          delete this._state.selected.status;
+        }
         let contacts = this._state
           .contacts
           .map((contact) => {
