@@ -21,8 +21,8 @@ function ContactView(props) {
         label="User Name"
         onChange={onChange}
         type={props.contact.userType === 'Employer'
-          ? "text"
-          : "hidden"
+          ? 'text'
+          : 'hidden'
         }
         value={props.contact.userName}
       />
@@ -30,9 +30,9 @@ function ContactView(props) {
         fieldType="password"
         label="Password"
         onChange={onChange}
-        type={ props.contact.userType === 'Employer' 
-          ? "password" 
-          : "hidden"
+        type={props.contact.userType === 'Employer'
+          ? 'password'
+          : 'hidden'
         }
         value={props.contact.password}
       />

@@ -20,6 +20,14 @@ class MainContainer extends React.Component {
     appState.showList = appState.employer.status === 'signedIn'
       && !appState.showContact;
 
+    if (this.state.showContact) {
+      appState.viewMode = 'contact';
+    } else if (this.state.showList) {
+      appState.viewMode = 'list';
+    } else {
+      appState.viewMode = 'login';
+    }
+
     return appState;
   }
 
@@ -27,15 +35,10 @@ class MainContainer extends React.Component {
     return (
       <div className="container">
         <Menu
-          view={ this.state.showContact
-                  ? "contact" 
-                  : this.state.showList 
-                    ? "list"
-                    : "login"
-                }
+          view={this.state.viewMode}
           dirty={this.state.selected && this.state.selected.status === 'dirty'}
           showDelete={!!this.state.selected && !!this.state.selected.id}
-          visible={true}
+          visible
         />
         <ContactView
           contact={this.state.selected}

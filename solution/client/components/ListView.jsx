@@ -26,7 +26,7 @@ class ListView extends React.Component {
     return (
       <div className="list">
         <ul>
-          { this.props.contacts.map(
+          {this.props.contacts.map(
               (contact, index) => (
                 <p
                   data-id={contact.id}
