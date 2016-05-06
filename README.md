@@ -28,7 +28,7 @@ A simple solution to manage employee contact info across employers implemented u
 - improve docker setup - slimmer, different strategy around git clone perhaps
 
 - improve / cleanup UI components:
-  * icons/theme/fonts - node-font-awesome or alternative(http://alternativeto.net/software/font-awesome/?sort=recentlikes)
+  * icons/theme/fonts - node-font-awesome or [alternative](http://alternativeto.net/software/font-awesome/?sort=recentlikes)
   * list view - sort, more info per line (responsive), icons to left and for hover(edit)
   * contact view - picture, edit then view
   * menu - is messy, clean up
