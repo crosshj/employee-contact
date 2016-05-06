@@ -20,9 +20,9 @@ class MainContainer extends React.Component {
     appState.showList = appState.employer.status === 'signedIn'
       && !appState.showContact;
 
-    if (this.state.showContact) {
+    if (appState.showContact) {
       appState.viewMode = 'contact';
-    } else if (this.state.showList) {
+    } else if (appState.showList) {
       appState.viewMode = 'list';
     } else {
       appState.viewMode = 'login';
