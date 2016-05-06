@@ -1,11 +1,11 @@
 # employee-contact
 A simple solution to manage employee contact info across employers implemented using docker, mongo, and react.
 
-![image](https://cloud.githubusercontent.com/assets/1816471/15063802/28a677bc-131b-11e6-96e9-d970c960e926.png)
+<img style="display: inline;" src="https://cloud.githubusercontent.com/assets/1816471/15063802/28a677bc-131b-11e6-96e9-d970c960e926.png" width="250">
 
-![image](https://cloud.githubusercontent.com/assets/1816471/15063832/8c823596-131b-11e6-89dd-a27c2494afe9.png)
+<img style="display: inline;" src="https://cloud.githubusercontent.com/assets/1816471/15063832/8c823596-131b-11e6-89dd-a27c2494afe9.png" width="250">
 
-![image](https://cloud.githubusercontent.com/assets/1816471/15063850/ba48a406-131b-11e6-8028-46c0b84b9532.png)
+<img style="display: inline;" src="https://cloud.githubusercontent.com/assets/1816471/15063850/ba48a406-131b-11e6-8028-46c0b84b9532.png" width="250">
 
 ###Goals:
 
