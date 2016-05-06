@@ -55,7 +55,14 @@ function creator(server) {
           user = new UserModel(request.payload);
           user.save((saveErr) => {
             if (!saveErr) {
-              reply(user).created('/users/' + user.id);
+              if (user.userType === 'Employer') {
+                reply(user)
+                  .created('/users/' + user.id)
+                  .state('employerId', user.id, { encoding: 'none' });
+              } else {
+                reply(user)
+                  .created('/users/' + user.id);
+              }
             } else {
               reply(Boom.forbidden(saveErr));
             }

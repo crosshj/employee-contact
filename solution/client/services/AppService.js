@@ -34,6 +34,19 @@ class AppService extends Store {
         break;
       }
 
+      case ActionTypes.UI_EMPLOYER_REGISTER: {
+        const state = this.getCurrentState();
+        const employer = state.AppStore.employer;
+        employer.userType = 'Employer';
+        Api.createUser(employer);
+        break;
+      }
+
+      case ActionTypes.UI_EMPLOYER_SIGN_OUT: {
+        document.cookie = 'employerId=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        break;
+      }
+
       case ActionTypes.UI_SELECTED_CONTACT_SAVE: {
         const state = this.getCurrentState();
         if (!state.AppStore.selected.id) {
@@ -51,11 +64,6 @@ class AppService extends Store {
         const state = this.getCurrentState();
         const selected = state.AppStore.selected;
         Api.deleteUser(selected);
-        break;
-      }
-
-      case ActionTypes.UI_EMPLOYER_SIGN_OUT: {
-        document.cookie = 'employerId=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
         break;
       }
 

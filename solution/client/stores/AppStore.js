@@ -116,11 +116,18 @@ class AppStore extends Store {
       }
 
       case ActionTypes.API_CREATE_USER_SUCCESS: {
-        if (this._state.selected && this._state.selected.status) {
-          delete this._state.selected.status;
+        if (action.payload.userType === 'Contact') {
+          if (this._state.selected && this._state.selected.status) {
+            delete this._state.selected.status;
+          }
+          this._state.contacts.push(action.payload);
+          this._state.selected = undefined;
         }
-        this._state.contacts.push(action.payload);
-        this._state.selected = undefined;
+        if (action.payload.userType === 'Employer') {
+          this._state.employer = action.payload;
+          this._state.employer.status = 'signedIn';
+        }
+
         this.__emitChange();
         break;
       }
