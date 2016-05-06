@@ -22,29 +22,25 @@ function onSignOutClick() {
 }
 
 function Menu(props) {
-  if (!props.visible) {
-    return null;
-  }
-
   return (
     <div className="menu">
-      { props.view === 'contact'
+      {props.view === 'contact'
         ? <div className="title">Edit Contact</div>
         : null
       }
-      { props.view === 'list'
+      {props.view === 'list'
         ? <div className="title">All Contacts</div>
         : null
       }
       <ul className="topMenu">
-        { props.view === 'contact'
+        {props.view === 'contact'
           ? <li
               className="back"
               onClick={onBackClick}
             >&#8678;</li>
           : null
         }
-        { props.dirty
+        {props.dirty
           ? <li
               className="confirmContact"
               onClick={onCheckClick}
@@ -53,25 +49,25 @@ function Menu(props) {
         }
       </ul>
 
-      { props.view === 'list'
+      {props.view === 'list'
         ? <ul className="floatMenu">
-            <li
-              className="addContact"
-              onClick={onAddClick}
-            >&#65291;</li>
-          </ul>
+          <li
+            className="addContact"
+            onClick={onAddClick}
+          >&#65291;</li>
+        </ul>
         : null
       }
 
       <ul className="bottomMenu">
-        { props.view === 'list'
-          ? <li 
+        {props.view === 'list'
+          ? <li
               className="signOut"
               onClick={onSignOutClick}
             >Sign Out</li>
           : null
         }
-        { props.view === 'contact'
+        {props.view === 'contact'
           && !!props.showDelete
           ? <li
               className="deleteContact"

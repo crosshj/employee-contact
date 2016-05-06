@@ -38,7 +38,6 @@ class MainContainer extends React.Component {
           view={this.state.viewMode}
           dirty={this.state.selected && this.state.selected.status === 'dirty'}
           showDelete={!!this.state.selected && !!this.state.selected.id}
-          visible
         />
         <ContactView
           contact={this.state.selected}
