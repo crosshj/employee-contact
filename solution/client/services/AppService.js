@@ -36,10 +36,10 @@ class AppService extends Store {
 
       case ActionTypes.UI_SELECTED_CONTACT_SAVE: {
         const state = this.getCurrentState();
-        if (!state.AppStore.selected.id){
-          let selected = state.AppStore.selected;
+        if (!state.AppStore.selected.id) {
+          const selected = state.AppStore.selected;
           selected.createdBy = state.AppStore.employer.id;
-          selected.userType = 'Contact';  
+          selected.userType = 'Contact';
           Api.createUser(selected);
         } else {
           Api.updateUser(state.AppStore.selected);
@@ -49,13 +49,13 @@ class AppService extends Store {
 
      case ActionTypes.UI_SELECTED_CONTACT_DELETE: {
         const state = this.getCurrentState();
-        let selected = state.AppStore.selected;  
+        const selected = state.AppStore.selected;
         Api.deleteUser(selected);
         break;
       }
 
       case ActionTypes.UI_EMPLOYER_SIGN_OUT: {
-        document.cookie = "employerId=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        document.cookie = 'employerId=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
         break;
       }
 

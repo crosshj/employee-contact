@@ -7,7 +7,7 @@ import _ from 'lodash';
     // TODO: would work better with first server GET and server-side rendering
 const employerIdCookieValue = document
   .cookie
-  .replace(/(?:(?:^|.*;\s*)employerId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  .replace(/(?:(?:^|.*;\s*)employerId\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
 class AppStore extends Store {
   constructor(dispatcher) {
@@ -26,7 +26,7 @@ class AppStore extends Store {
   }
 
   get() {
-    let state = _.cloneDeep(this._state);
+    const state = _.cloneDeep(this._state);
     return state;
   }
 
@@ -52,7 +52,7 @@ class AppStore extends Store {
       }
 
       case ActionTypes.UI_EMPLOYER_SIGN_OUT: {
-        this._state.employer= {};
+        this._state.employer = {};
         this.__emitChange();
         break;
       }
@@ -62,13 +62,13 @@ class AppStore extends Store {
         this.__emitChange();
         break;
       }
-      
+
       case ActionTypes.UI_CONTACT_ADD: {
         this._state.selected = {};
         this.__emitChange();
         break;
       }
-      
+
       case ActionTypes.UI_CONTACT_SELECT: {
         const contactId = action.payload;
         const selectedContact = this._state
@@ -126,10 +126,10 @@ class AppStore extends Store {
       }
 
       case ActionTypes.API_DELETE_USER_SUCCESS: {
-        let contacts = this._state
+        const contacts = this._state
           .contacts
           .filter((contact) => {
-            return contact.id !== this._state.selected.id
+            return contact.id !== this._state.selected.id;
           });
         this._state.contacts = _.cloneDeep(contacts);
         this._state.selected = undefined;
@@ -141,7 +141,7 @@ class AppStore extends Store {
         if (this._state.selected && this._state.selected.status) {
           delete this._state.selected.status;
         }
-        let contacts = this._state
+        const contacts = this._state
           .contacts
           .map((contact) => {
             return contact.id === this._state.selected.id
@@ -151,6 +151,7 @@ class AppStore extends Store {
         this._state.contacts = _.cloneDeep(contacts);
         this._state.selected = undefined;
         this.__emitChange();
+        break;
       }
 
       default: {

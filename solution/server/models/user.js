@@ -44,7 +44,6 @@ const userSchema = new mongoose.Schema({
   zip: String
 });
 
-// BOO: can't use arrow function because framework binds doc to func!
 function saveMiddlewareHandler(next) {
   if (this.userType === 'Employer'
       && !!this.userName

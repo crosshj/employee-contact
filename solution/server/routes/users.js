@@ -9,7 +9,7 @@ function listUsersCreatedById(id, reply) {
       if (!err) {
         reply(contacts).state('employerId', id, { encoding: 'none' });
       } else {
-        callback(Boom.badImplementation(err));
+        reply(Boom.badImplementation(err));
       }
     }
   );
