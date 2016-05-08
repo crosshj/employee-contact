@@ -46,5 +46,8 @@
     "superagent": "^1.8.3",
     "webpack": "^1.13.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "plato": "git+https://github.com/deedubs/es6-plato.git",
+    "recursive-readdir-sync": "^1.0.6"
+  }
 }

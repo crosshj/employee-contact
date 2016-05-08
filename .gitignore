@@ -34,3 +34,4 @@ node_modules
 
 # Webpack
 solution/client/bundle.js*
+plato-report
